@@ -3,33 +3,32 @@
     <div class="editor">
       <VueJSONEditor
         :content="content"
-        :mode="text"
-        :on-change="onChange"
-        :read-only="readOnly"
+        mode="text"
+        tag="editor1"
+        :navigation-bar="true"
+        :main-menu-bar="true"
+        :on-change="onChange1"
+        :read-only="false"
       />
-      <VueJSONEditor2
-      ref="vueJSONEditor2"
+      <VueJSONEditor
         :content="content2"
-        :mode="tree"
-        :read-only="readOnly"
+        :navigation-bar="false"
+        :main-menu-bar="true"
+        mode="tree"
+        tag="editor2"
+        :read-only="true"
       />
     </div>
-    <div>
-      <CopyText :content="content2"/>
-      </div>
   </div>
 </template>
 
 <script>
+// import VueJSONEditor from './components/VueJSONEditor.vue'
 import VueJSONEditor from './components/VueJSONEditor.vue'
-import VueJSONEditor2 from './components/VueJSONEditor2.vue'
-import CopyText from './components/CopyText.vue'
 export default {
-  components: { VueJSONEditor, VueJSONEditor2, CopyText },
+  components: { VueJSONEditor },
   data() {
     return {
-      showEditor: true,
-      readOnly: false,
       content: {
         json: {
           greeting: 'Hello World',
@@ -46,16 +45,14 @@ export default {
       }
     }
   },
+
   mounted () {
-    console.log('index mounted')
-    console.log('this.$refs index', this.$refs)
+    this.onChange1(this.content)
   },
-  updated () {
-    console.log('index updated')
-  },
+
   methods: {
-    onChange(content) {
-      console.log('onChange', content)
+    onChange1(content) {
+      console.log('onChange1', content)
       // this.content = content
 
       if (content.text) {
@@ -63,21 +60,22 @@ export default {
       } else if (content.json) {
         this.content2.text = JSON.stringify(content.json)
       }
-      this.$refs.vueJSONEditor2.doSomething()
-
-      // this.content2 = { json: JSON.parse(content.text), text: content.text }
     }
   }
+
 }
 </script>
 <style lang="less" scoped>
 .json {
-  margin: 0 5%;
+
 
   .editor {
     width: 100%;
-    height: 350px;
+    height: auto;
     display: flex;
+
+    --jse-theme-color: #42b983;
+    --jse-theme-color-highlight: #4d9b78;
   }
 }
 </style>

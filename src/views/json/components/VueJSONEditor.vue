@@ -5,52 +5,56 @@
 <script>
 import { JSONEditor } from 'vanilla-jsoneditor'
 
-// JSONEditor properties as of version 0.3.60
-// const propNames = [
-//   'content',
-//   'mode',
-//   'mainMenuBar',
-//   'navigationBar',
-//   'statusBar',
-//   'readOnly',
-//   'indentation',
-//   'tabSize',
-//   'escapeControlCharacters',
-//   'escapeUnicodeCharacters',
-//   'validator',
-//   'onError',
-//   'onChange',
-//   'onChangeMode',
-//   'onClassName',
-//   'onRenderValue',
-//   'onRenderMenu',
-//   'queryLanguages',
-//   'queryLanguageId',
-//   'onChangeQueryLanguage',
-//   'onFocus',
-//   'onBlur'
-// ]
-
-
-
 export default {
   name: 'VueJSONEditor',
-  props: { content: Object, readOnly: Boolean, onChange: Function },
+  props: {
+    content: Object,
+    readOnly: Boolean,
+    onChange: Function,
+    mode: String,
+    tag: String,
+    navigationBar: Boolean,
+    mainMenuBar: Boolean
+  },
+  data() {
+    return {
+      config: {}
+    }
+  },
+  watch: {
+    content: {
+      handler (newValue, oldValue) {
+        console.log(`'watch content handle ==========${this.tag}=========`, JSON.stringify(newValue))
+        this.editor.updateProps({ content: { text: newValue.text } })
+      },
+      deep: true, // 是否深度监听
+      immediate: false // 是否在组件创建时立即执行回调函数
+    }
+  },
+  methods: {
+
+    generateProps () {
+      return {
+        content: this.content,
+        readOnly: this.readOnly,
+        onChange: this.onChange,
+        mode: this.mode,
+        navigationBar: this.navigationBar,
+        mainMenuBar: this.mainMenuBar
+      }
+    }
+  },
   mounted () {
-    this.editor = new JSONEditor({
-      target: this.$refs.editor,
-      props: { content: this.content, readOnly: this.readOnly, onChange: this.onChange, mode: 'text' }
-    })
-    console.log('mounted create editor', this.editor)
+    this.editor = new JSONEditor({ target: this.$refs.editor, props: this.generateProps() })
+    console.log('create editor', this.editor)
   },
   updated () {
-    console.log(` Vue json editor updated ${JSON.stringify(this.content)}`)
-    this.config = { content: this.content, readOnly: this.readOnly, onChange: this.onChange }
-    console.log('update props', JSON.stringify(this.config))
-    this.editor.updateProps(this.config)
+    console.log('updated editor', this.editor)
+    this.editor.updateProps(this.generateProps())
   },
+
   beforeUnmount() {
-    console.log('destroy editor')
+    console.log('destroy editor2')
     this.editor.destroy()
     this.editor = null
   }
