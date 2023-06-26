@@ -1,7 +1,15 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">JSON格式化</router-link>
+      <router-link to="/json">JSON格式化</router-link>
+      <router-link to="/urlencode">URL编解码</router-link>
+      <router-link to="/base64">Base64</router-link>
+      <router-link to="/hash">Hash</router-link>
+      <router-link to="/numconvert">数字进制</router-link>
+      <router-link to="/timestamp">时间戳</router-link>
+      <router-link to="/colornumber">颜色Hex</router-link>
+      <a  target="_blank" href="https://cli.im/">草料二维码</a>
+      <router-link to="/ascii">ASCII码</router-link>
       <router-link to="/about">About</router-link>
     </nav>
     <router-view />
@@ -20,7 +28,7 @@
 }
 
 nav {
-  font-size: 20px;
+  font-size: 18px;
   padding: 30px 0;
 }
 
@@ -28,11 +36,11 @@ nav a {
   margin-right: 20px;
   font-weight: bold;
   color: #2c3e50;
-  text-decoration: none;
+  text-decoration:none;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
-  text-decoration: none;
+  text-decoration: underline;
 }
 </style>
