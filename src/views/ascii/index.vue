@@ -1,11 +1,30 @@
 <template>
   <div>
-    <input placeholder="字符" type="text" ref="inputText" /><span class="input-arrow">◀▶</span> <input type="text"  placeholder="ascii码"/>
-
+    <div class="convert-area">
+      <input
+        maxlength="1"
+        placeholder="字符"
+        type="text"
+        ref="inputText"
+        v-model="charText1"
+      />
+      <span class="input-arrow">转ascii码:</span>
+      <span class="result">{{ asciiText1 }}</span>
+      <input
+        type="text"
+        class="second-input"
+        v-model="asciiText2"
+        placeholder="ascii码"
+      />
+      <span class="input-arrow">转字符:</span>
+      <span class="result">{{ charText2 }}</span>
+      <span style="color: red">{{ errorText }}</span>
+    </div>
     <!-- 特殊字符一ascii码(32-47) -->
-    <table
-           width="100%">
-      <caption class="tcaption">特殊字符一ascii码(32-47)</caption>
+    <table width="100%">
+      <caption class="tcaption">
+        特殊字符一ascii码(32-47)
+      </caption>
       <tbody>
         <tr>
           <td class="header">字符</td>
@@ -28,7 +47,7 @@
         </tr>
         <tr>
           <td class="header">ascii码</td>
-          <td >32</td>
+          <td>32</td>
           <td>33</td>
           <td>34</td>
           <td>35</td>
@@ -49,9 +68,10 @@
     </table>
 
     <!-- 数字类ascii码(48-57),特殊字符二ascii码(58-64) -->
-    <table
-           width="100%">
-      <caption class="tcaption">数字类、特殊字符(48-64)</caption>
+    <table width="100%">
+      <caption class="tcaption">
+        数字类、特殊字符(48-64)
+      </caption>
       <tbody>
         <tr>
           <td class="header">字符</td>
@@ -97,9 +117,10 @@
     </table>
 
     <!-- 大写字母类ascii码(65-90) -->
-    <table
-           width="100%">
-      <caption class="tcaption">大写字母类ascii码(65-90)</caption>
+    <table width="100%">
+      <caption class="tcaption">
+        大写字母类ascii码(65-90)
+      </caption>
       <tbody>
         <tr>
           <td class="header">字符</td>
@@ -163,9 +184,10 @@
     </table>
 
     <!-- 特殊字符三ascii码(91-96) -->
-    <table
-           style="width: 50%;">
-      <caption class="tcaption">特殊字符三ascii码(91-96)</caption>
+    <table style="width: 50%">
+      <caption class="tcaption">
+        特殊字符三ascii码(91-96)
+      </caption>
       <tbody>
         <tr>
           <td class="header">字符</td>
@@ -189,9 +211,10 @@
     </table>
 
     <!-- 小写字母类ascii码(97-122) -->
-    <table class="table table-bordered tb"
-           width="100%">
-      <caption class="tcaption">小写字母类ascii码(97-122)</caption>
+    <table class="table table-bordered tb" width="100%">
+      <caption class="tcaption">
+        小写字母类ascii码(97-122)
+      </caption>
       <tbody>
         <tr>
           <td class="header">字符</td>
@@ -255,9 +278,10 @@
     </table>
 
     <!-- 特殊字符四ascii码(123-127) -->
-    <table
-           style="width: 50%;">
-      <caption class="tcaption">特殊字符四ascii码(123-127)</caption>
+    <table style="width: 50%">
+      <caption class="tcaption">
+        特殊字符四ascii码(123-127)
+      </caption>
       <tbody>
         <tr>
           <td class="header">字符</td>
@@ -278,123 +302,174 @@
       </tbody>
     </table>
 
-    <table
-           width="100%">
-      <caption class="tcaption">特殊字符解释ascii码(1-31)</caption>
+    <table width="100%">
+      <caption class="tcaption">
+        特殊字符解释ascii码(1-31)
+      </caption>
       <tbody>
         <tr>
           <td>NUL 空 1</td>
           <td>LF 换行 10</td>
           <td>DC3 设备控制三XOFF 19</td>
           <td>FS 文件分割符 28</td>
-      </tr>
-      <tr>
-        <td>STX 正文开始 2</td>
-        <td>VT 垂直制表 11</td>
-        <td>DC4 设备控制四 20</td>
-        <td>GS 组群分隔符 29</td>
-      </tr>
-      <tr>
-        <td>ETX 正文结束 3</td>
-        <td>FF 换页键 12</td>
-        <td>NAK 空转同步 21</td>
-        <td>RS 记录分隔符 30</td>
-      </tr>
-      <tr>
-        <td>EOY 传输结束 4</td>
-        <td>CR 归位键 13</td>
-        <td>SYN 同步用暂停 22</td>
-        <td>US 单元分隔符 31</td>
-      </tr>
-      <tr>
-        <td>ENQ 询问字符 5</td>
-        <td>SO 取消变换（Shift out） 14</td>
-        <td>TB 区块传输结束 23</td>
-      </tr>
-      <tr>
-        <td>ACK 承认 6</td>
-        <td>SI 启用变换（Shift in） 15</td>
-        <td>CAN 取消 24</td>
-      </tr>
-      <tr>
-        <td>BEL 报警 7</td>
-        <td>DLE 跳出数据通讯 16</td>
-        <td>EM 连接介质中断 25</td>
-      </tr>
-      <tr>
-        <td>BS 退一格 8</td>
-        <td>DC1 设备控制一XON 17</td>
-        <td>SUB 替换 26</td>
-      </tr>
-      <tr>
-        <td>HT 横向列表 9</td>
-        <td>DC2 设备控制二 18</td>
-        <td>ESC 跳出 27</td>
-      </tr>
-      <tr>
-      </tr>
+        </tr>
+        <tr>
+          <td>STX 正文开始 2</td>
+          <td>VT 垂直制表 11</td>
+          <td>DC4 设备控制四 20</td>
+          <td>GS 组群分隔符 29</td>
+        </tr>
+        <tr>
+          <td>ETX 正文结束 3</td>
+          <td>FF 换页键 12</td>
+          <td>NAK 空转同步 21</td>
+          <td>RS 记录分隔符 30</td>
+        </tr>
+        <tr>
+          <td>EOY 传输结束 4</td>
+          <td>CR 归位键 13</td>
+          <td>SYN 同步用暂停 22</td>
+          <td>US 单元分隔符 31</td>
+        </tr>
+        <tr>
+          <td>ENQ 询问字符 5</td>
+          <td>SO 取消变换（Shift out） 14</td>
+          <td>TB 区块传输结束 23</td>
+        </tr>
+        <tr>
+          <td>ACK 承认 6</td>
+          <td>SI 启用变换（Shift in） 15</td>
+          <td>CAN 取消 24</td>
+        </tr>
+        <tr>
+          <td>BEL 报警 7</td>
+          <td>DLE 跳出数据通讯 16</td>
+          <td>EM 连接介质中断 25</td>
+        </tr>
+        <tr>
+          <td>BS 退一格 8</td>
+          <td>DC1 设备控制一XON 17</td>
+          <td>SUB 替换 26</td>
+        </tr>
+        <tr>
+          <td>HT 横向列表 9</td>
+          <td>DC2 设备控制二 18</td>
+          <td>ESC 跳出 27</td>
+        </tr>
+        <tr></tr>
       </tbody>
     </table>
-
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-
+      charText1: '',
+      asciiText1: '',
+      charText2: '',
+      asciiText2: '',
+      errorText: ''
     }
   },
-  methods: {
+  watch: {
+    charText1: {
+      handler(newValue, oldValue) {
+        const text = newValue.trim()
+        const ascii = text ? text.charCodeAt(0) : ''
+        if (ascii === 0 || ascii === '') {
+          this.charText1 = ''
+          this.asciiText1 = ''
+        } else {
+          this.asciiText1 = ascii
+          console.log(
+            `watch charText,${text},${text.length},`,
+            this.asciiText1
+          )
+        }
+        this.errorText = ''
+      }
+    },
+    asciiText2: {
+      handler(newValue, oldValue) {
+        if (newValue === '') {
+          return
+        }
 
+        if (typeof newValue !== 'number' || newValue < 32 || newValue > 126) {
+          // this.errorText = '请输入非特殊ascii码 （32~127）'
+          this.charText2 = 'NaN?'
+          return
+        }
+        // this.errorText = ''
+        const charText = String.fromCharCode(newValue)
+        this.charText2 = charText
+        console.log('watch asciiText', newValue, newValue.length, charText)
+      }
+    }
   },
-  mounted () {
+  methods: {},
+  mounted() {
     this.$refs.inputText.focus()
   }
 }
 </script>
-<style lang='less' scoped>
+<style lang="less" scoped>
+.convert-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .second-input {
+    margin-left: 100px;
+  }
 
-input{
-  padding: 10px;
-  font-size: 15px;
-  outline: none;
-  border: 2px solid #e3dddd;
- }
+  input {
+    padding: 10px;
+    width: 50px;
+    font-size: 15px;
+    outline: none;
+    border: 2px solid #e3dddd;
+  }
 
- input:focus{
-  outline: none;
-  border: 2px solid #42b983;
- }
- .input-arrow{
-  color: #42b983;
- }
+  input:focus {
+    outline: none;
+    border: 2px solid #42b983;
+  }
+  .result {
+    padding: 10px;
+    width: 50px;
+    font-size: 15px;
+  }
+  .input-arrow {
+    color: #42b983;
+  }
+}
 
 caption {
-    display: table-caption;
-    text-align: -webkit-center;
-    font-size: 16px;
-    padding-top: 20px;
-    color: #777;
-    text-align: left !important;
+  display: table-caption;
+  text-align: -webkit-center;
+  font-size: 16px;
+  padding-top: 20px;
+  color: #777;
+  text-align: left !important;
 }
 table {
   width: 100%;
-    max-width: 100%;
-    border: 1px solid #ddd;
-    background-color: transparent;
-    border-spacing: 0;
-    border-collapse: collapse;
+  max-width: 100%;
+  border: 1px solid #ddd;
+  background-color: transparent;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 td {
   padding: 6px 3px;
-    border: 1px solid #ddd;
-    display: table-cell;
-    text-align: center;
+  border: 1px solid #ddd;
+  display: table-cell;
+  text-align: center;
 }
-.header{
+.header {
   width: 50px;
 }
 </style>
