@@ -5,9 +5,9 @@
       <router-link to="/urlencode">URL编解码</router-link>
       <router-link to="/base64">Base64</router-link>
       <router-link to="/hash">Hash</router-link>
-      <router-link to="/numconvert">进制转换</router-link>
+      <router-link to="/number">进制转换</router-link>
       <router-link to="/timestamp">时间戳</router-link>
-      <router-link to="/colornumber">颜色Hex</router-link>
+      <router-link to="/color">颜色</router-link>
       <a target="_blank" href="https://cli.im/">草料二维码</a>
       <router-link to="/ascii">ASCII码</router-link>
       <router-link to="/about">About</router-link>

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const features = ['json', 'urlencode', 'base64', 'hash', 'numconvert', 'timestamp', 'ascii', 'colornumber', 'about']
+const features = ['json', 'urlencode', 'base64', 'hash', 'number', 'timestamp', 'ascii', 'color', 'about']
   .map((item) => ({
     path: `/${item}`,
     component: () => import(`../views/${item}/index.vue`)
