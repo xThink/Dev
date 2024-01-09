@@ -10,7 +10,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "buffer": "^6.0.3",
@@ -36,6 +37,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "less": "^4.1.3",
     "less-loader": "^11.1.3",
+    "push-dir": "^0.4.1",
     "vue-template-compiler": "^2.6.14"
   }
 }
